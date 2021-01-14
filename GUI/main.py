@@ -51,7 +51,10 @@ class Shop(QWidget):
         radio2.setGeometry(40,220,101,20)
         radio3.setGeometry(40,240,101,20)
         radio4.setGeometry(40,260,141,20)
-
+        radio1.toggled.connect(self.lineone)
+        radio2.toggled.connect(self.linetwo)
+        radio3.toggled.connect(self.linethree)
+        radio4.toggled.connect(self.linefour)
     def tableprice(self):
         self.list=[]
         self.backlist = []
@@ -89,7 +92,6 @@ class Shop(QWidget):
         self.silverc.setFont(QFont("Dubai Medium", 10))
         
         copper = QLabel(self)
-        
         copper.setGeometry(510,30,16,16)
         copper.hide
         copper.setStyleSheet("background-image : url(Image//kupfer.jpg)")
@@ -116,6 +118,28 @@ class Shop(QWidget):
             self.copperc.setText("")
         return False
         
+    def lineone(self, selected):
+        if selected:
+            for i in self.list:
+                i.setHidden(False)
+            for i in range(5,20):
+                self.list[i].setHidden(True)
+    def linetwo(self, selected):
+        if selected:
+            for i in self.list:
+                i.setHidden(False)
+            for i in range(10,20):
+                self.list[i].setHidden(True)
+    def linethree(self, selected):
+        if selected:
+            for i in self.list:
+                i.setHidden(False)
+            for i in range(15,20):
+                self.list[i].setHidden(True)
+    def linefour(self, selected):
+        if selected:
+            for i in self.list:
+                i.setHidden(False)
 app = QApplication(sys.argv)
 win = Mainwindow()
 sys.exit(app.exec_())
