@@ -1,3 +1,4 @@
+import csv
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import *
@@ -34,6 +35,12 @@ class Shop(QWidget):
         label1.setFont(QFont("Ravie", 12))
         scroll = QListWidget(self)
         scroll.setGeometry(30,50,211,87)
+        csv_file = open("VerkaufInfo.csv", "r")
+        objekt = csv.reader(csv_file, delimiter=";")
+        csvl = list(objekt)
+        charcount = int(csvl[0][2])
+        for i in range(charcount):
+            scroll.addItem(csvl[i*5][0])
         button = QPushButton("Preise anzeigen",self)
         button.setGeometry(30,140,101,28)
         check = QCheckBox("Preis OK",self)
@@ -117,7 +124,7 @@ class Shop(QWidget):
             self.silverc.setText("")
             self.copperc.setText("")
         return False
-        
+
     def lineone(self, selected):
         if selected:
             for i in self.list:
